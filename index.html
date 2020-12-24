@@ -9,7 +9,7 @@
                 const MOVES = ['Rock', 'Paper', 'Scissors'];
                 const NUM_MOVES = MOVES.length;
 
-                function randomNumber(minNum, maxNum) {
+                function randomNumber(minNum = 0, maxNum) {
                     if (minNum == maxNum) {
                         return minNum;
                     }
@@ -20,7 +20,8 @@
                 }
 
                 function computerPlay() {
-
+                    let moveIndex = randomNumber(0, NUM_MOVES);
+                    return MOVES[moveIndex];
                 }
 
 
