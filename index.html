@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Rock Paper Scissors</title>
+            <meta charset="UTF-8"/>
+        </head>
+        <body>
+            <script>
+                const MOVES = ['Rock', 'Paper', 'Scissors'];
+                const NUM_MOVES = MOVES.length;
+
+                function randomNumber(minNum, maxNum) {
+                    if (minNum == maxNum) {
+                        return minNum;
+                    }
+                    else if (minNum > maxNum) {
+                        return randomNumber(maxNum, minNum);
+                    }
+                    return Math.floor( Math.random() * (maxNum - minNum));
+                }
+
+                function computerPlay() {
+
+                }
+
+
+            </script>
+        </body>
+    </html>
