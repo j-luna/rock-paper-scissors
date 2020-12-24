@@ -6,8 +6,11 @@
         </head>
         <body>
             <script>
+
                 const MOVES = ['ROCK', 'PAPER', 'SCISSORS'];
                 const NUM_MOVES = MOVES.length;
+
+                /* Find a random number between minNum (inclusive) and maxNum (exclusive) (note that this is exactly what we want for array indices) */
 
                 function randomNumber(minNum, maxNum) {
                     if (minNum == maxNum) {
@@ -19,10 +22,14 @@
                     return Math.floor( Math.random() * (maxNum - minNum) );
                 }
 
+                /* Retrieve the computer's move */
+
                 function computerPlay() {
                     let moveIndex = randomNumber(0, NUM_MOVES);
                     return MOVES[moveIndex];
                 }
+
+                /* Retrieve the player's move */
 
                 function playerPlay() {
                     let playerSelectionValid = false;
@@ -41,6 +48,8 @@
 
                     return playerSelection;
                 }
+
+                /* For a given set of player and computer selections in one round, determine who the winner is */
 
                 function singleRound(playerSelection, computerSelection) {
                     switch(playerSelection) {
@@ -81,10 +90,10 @@
                                     return 0;
                             }
                     }
-
-                    /* If you somehow got here... */
                     return 'Error - something went wrong...';
                 }
+
+                /* Determine the winner of the game after the selected number of rounds in game() */
 
                 function gameWinner(playerScore, computerScore) {
                     if (computerScore > playerScore) {
@@ -97,6 +106,8 @@
                         console.log(`Draw! Player: ${playerScore}; Computer: ${computerScore}`);
                     }
                 }
+
+                /* Play the game */
 
                 function game() {
                     const NUM_GAMES = 5;
