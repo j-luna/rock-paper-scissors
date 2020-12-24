@@ -6,7 +6,7 @@
         </head>
         <body>
             <script>
-                const MOVES = ['Rock', 'Paper', 'Scissors'];
+                const MOVES = ['ROCK', 'PAPER', 'SCISSORS'];
                 const NUM_MOVES = MOVES.length;
 
                 function randomNumber(minNum, maxNum) {
@@ -16,7 +16,7 @@
                     else if (minNum > maxNum) {
                         return randomNumber(maxNum, minNum);
                     }
-                    return Math.floor( Math.random() * (maxNum - minNum));
+                    return Math.floor( Math.random() * (maxNum - minNum) );
                 }
 
                 function computerPlay() {
@@ -25,12 +25,9 @@
                 }
 
                 function singleRound(playerSelection, computerSelection) {
-                    let playerSelFormatted = playerSelection.toUpperCase();
-                    let computerSelFormatted = computerSelection.toUpperCase();
-
-                    switch(playerSelFormatted) {
+                    switch(playerSelection) {
                         case 'ROCK':
-                            switch(computerSelFormatted) {
+                            switch(computerSelection) {
                                 case 'ROCK':
                                     return 'Draw! You both chose Rock.';
                                 case 'PAPER':
@@ -39,7 +36,7 @@
                                     return 'You win! Rock beats Scissors.';
                             }
                         case 'PAPER':
-                            switch(computerSelFormatted) {
+                            switch(computerSelection) {
                                 case 'ROCK':
                                     return 'You win! Paper beats Rock.';
                                 case 'PAPER':
@@ -48,7 +45,7 @@
                                     return 'You lose! Scissors beats Paper.';
                             }
                         case 'SCISSORS':
-                            switch(computerSelFormatted) {
+                            switch(computerSelection) {
                                 case 'ROCK':
                                     return 'You lose! Rock beats Scissors.';
                                 case 'PAPER':
@@ -59,9 +56,54 @@
                     }
 
                     /* If you somehow got here... */
-                    return "Error - something went wrong...";
+                    return 'Error - something went wrong...';
                 }
 
+                function game() {
+                    const NUM_GAMES = 5;
+                    let gameNum = 0;
+                    let playerScore = 0;
+                    let computerScore = 0;
+
+                    while (gameNum < NUM_GAMES) {
+                        let playerSelectionValid = false;
+                        let playerSelection;
+                        let gameResult;
+
+                        while (!playerSelectionValid) {
+                            playerSelection = prompt('Please make a move: ').toUpperCase();
+                            
+                            if (MOVES.includes(playerSelection)) {
+                                playerSelectionValid = true;
+                            }
+                            else {
+                                console.log('ERROR: Please make a valid move [Rock, Paper, Scissors]');
+                            }
+                        }
+
+                        gameResult = singleRound(playerSelection, computerPlay());
+                        console.log(gameResult);
+                        
+                        if (gameResult.indexOf('win') > -1) {
+                            ++playerScore;
+                        }
+                        else if (gameResult.indexOf('lose') > -1) {
+                            ++computerScore;
+                        }
+
+                        ++gameNum;
+                    }
+
+                    if (computerScore > playerScore) {
+                        console.log(`Computer wins! Computer: ${computerScore}; Player: ${playerScore}`);
+                    }
+                    else if (playerScore > computerScore) {
+                        console.log(`Player wins! Player: ${playerScore}; Computer: ${computerScore}`);
+                    }
+                    else {
+                        console.log(`Draw! Player: ${playerScore}; Computer: ${computerScore}`);
+                    }
+                }
             </script>
         </body>
     </html>
