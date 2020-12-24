@@ -9,7 +9,7 @@
                 const MOVES = ['Rock', 'Paper', 'Scissors'];
                 const NUM_MOVES = MOVES.length;
 
-                function randomNumber(minNum = 0, maxNum) {
+                function randomNumber(minNum, maxNum) {
                     if (minNum == maxNum) {
                         return minNum;
                     }
@@ -24,6 +24,43 @@
                     return MOVES[moveIndex];
                 }
 
+                function singleRound(playerSelection, computerSelection) {
+                    let playerSelFormatted = playerSelection.toUpperCase();
+                    let computerSelFormatted = computerSelection.toUpperCase();
+
+                    switch(playerSelFormatted) {
+                        case 'ROCK':
+                            switch(computerSelFormatted) {
+                                case 'ROCK':
+                                    return 'Draw! You both chose Rock.';
+                                case 'PAPER':
+                                    return 'You lose! Paper beats Rock.';
+                                case 'SCISSORS':
+                                    return 'You win! Rock beats Scissors.';
+                            }
+                        case 'PAPER':
+                            switch(computerSelFormatted) {
+                                case 'ROCK':
+                                    return 'You win! Paper beats Rock.';
+                                case 'PAPER':
+                                    return 'Draw! You both chose Paper.';
+                                case 'SCISSORS':
+                                    return 'You lose! Scissors beats Paper.';
+                            }
+                        case 'SCISSORS':
+                            switch(computerSelFormatted) {
+                                case 'ROCK':
+                                    return 'You lose! Rock beats Scissors.';
+                                case 'PAPER':
+                                    return 'You win! Scissors beats Paper.';
+                                case 'SCISSORS':
+                                    return 'Draw! You both chose Scissors.';
+                            }
+                    }
+
+                    /* If you somehow got here... */
+                    return "Error - something went wrong...";
+                }
 
             </script>
         </body>
